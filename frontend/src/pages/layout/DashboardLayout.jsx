@@ -1,13 +1,22 @@
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import axios from 'axios'
-import api, { API } from '../../API'
+import { Outlet } from 'react-router-dom'
+import Header, { HeaderHeight } from '../../components/Header'
+import { NavTrail } from '../../components/Breadcrumbs'
+import SideBar, { SideBarWidth } from '../../components/SideBar'
 
-export default function DashboardLayout({}) {
+export default function DashboardLayout() {
 	return (
-		<>
-			<Outlet />
-		</>
+		<div className='flex'>
+			<SideBar />
+			<div
+				className={`flex min-h-screen flex-col w-full`}
+				style={{ marginLeft: SideBarWidth }}
+			>
+				<Header />
+				<main className={`p-4`}>
+					<NavTrail />
+					<Outlet />
+				</main>
+			</div>
+		</div>
 	)
 }

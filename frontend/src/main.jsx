@@ -41,10 +41,11 @@ function MainApp() {
 						/>
 					}
 				>
-					<Route path='/departments' element={<Departments />}>
-						<Route index element={<div>Выбери кафедру</div>} />
-						<Route path=':departmentName' element={<DepartmentPage />} />
-					</Route>
+					<Route path='/departments' element={<Departments />} />
+					<Route
+						path='/departments/:departmentName'
+						element={<DepartmentPage />}
+					/>
 				</Route>
 			</Routes>
 		</Suspense>
@@ -55,7 +56,7 @@ createRoot(document.getElementById('root')).render(
 	<Router>
 		<Toaster position='top-right' />
 		<div className='relative'>
-			<Snowfall
+			{/* <Snowfall
 				style={{
 					position: 'fixed',
 					width: '100vw',
@@ -63,7 +64,7 @@ createRoot(document.getElementById('root')).render(
 					zIndex: 9999,
 					pointerEvents: 'none',
 				}}
-			/>
+			/> */}
 			<MainApp />
 		</div>
 	</Router>
