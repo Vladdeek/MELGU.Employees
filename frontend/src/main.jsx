@@ -17,6 +17,9 @@ import { Toaster } from 'react-hot-toast'
 import DashboardLayout from './pages/layout/DashboardLayout'
 import Departments from './pages/Departments'
 import DepartmentPage from './pages/DepartmentPage'
+import SectionPage from './pages/SectionPage'
+import EmployeePage, { EmployeeSection } from './pages/EmployeePage'
+import ContactDirectoryPage from './pages/ContactDirectoryPage'
 
 function MainApp() {
 	const [role, setRole] = useState()
@@ -30,22 +33,18 @@ function MainApp() {
 			}
 		>
 			<Routes>
-				<Route
-					path='/'
-					element={
-						<DashboardLayout
-							onChange={data => {
-								setRole(data.role)
-								setTeacherProfileId(data.teacher_profile_id)
-							}}
-						/>
-					}
-				>
-					<Route path='/departments' element={<Departments />} />
+				<Route path='/' element={<DashboardLayout />}>
+					<Route path='departments/list' element={<Departments />} />
+
+					<Route path='department/:departmentid' element={<DepartmentPage />} />
 					<Route
-						path='/departments/:departmentName'
-						element={<DepartmentPage />}
+						path='department/:departmentid/section/:sectionid'
+						element={<SectionPage />}
 					/>
+					<Route path='employee/:employeeid' element={<EmployeePage />}>
+						<Route path=':achievements' element={<EmployeeSection />} />
+					</Route>
+					<Route path='contacts' element={<ContactDirectoryPage />} />
 				</Route>
 			</Routes>
 		</Suspense>

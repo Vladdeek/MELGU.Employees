@@ -28,9 +28,10 @@ const SideBar = () => {
 				/>
 			),
 			option: [
-				{ title: 'LMS MELGU1', href: 'https://lms.melgu.ru' },
-				{ title: 'LMS MELGU2', href: 'https://lms.melgu.ru' },
-				{ title: 'LMS MELGU3', href: 'https://lms.melgu.ru' },
+				{ title: 'МелГУ.Абитуриент', href: 'https://abiturient.mgu-mlt.ru' },
+				{ title: 'Главный сайт', href: 'https://melsu.ru' },
+				{ title: 'МелГУ.СУО', href: 'https://lms.melsu.ru' },
+				{ title: 'MyMelSU', href: 'https://my.melsu.ru' },
 			],
 		},
 		{
@@ -43,7 +44,7 @@ const SideBar = () => {
 					} transition-all`}
 				/>
 			),
-			to: '/departments',
+			to: '/departments/list',
 		},
 		{
 			label: 'Телефонный справочник',
@@ -55,7 +56,7 @@ const SideBar = () => {
 					} transition-all`}
 				/>
 			),
-			to: '/phone',
+			to: '/contacts',
 		},
 	]
 	return (
@@ -185,7 +186,7 @@ const SideBarMenuItem = ({ icon, label, option, to }) => {
 						animate={{ height: 'auto', opacity: 1 }}
 						exit={{ height: 0, opacity: 0 }}
 						transition={{ duration: 0.25, ease: 'easeInOut' }}
-						className='flex flex-col bg-[var(--bg)] ml-7 overflow-hidden'
+						className='flex flex-col bg-[var(--bg)] ml-5 overflow-hidden'
 					>
 						{option.map((opt, idx) => (
 							<motion.a

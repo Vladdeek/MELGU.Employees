@@ -1,6 +1,8 @@
 :root[data-theme='light'] {
 	--bg: #ffffff;
+	--bg-second: #fcfcfc;
 	--hero: #820000;
+	--hero-pale: #c04e4e;
 	--dark-hero: #700000;
 	--dark-pale: #881414;
 	--glow: #c10f1a;
@@ -13,7 +15,9 @@
 
 :root[data-theme='dark'] {
 	--bg: #252525;
+	--bg-second: #323232;
 	--hero: #820000;
+	--hero-pale: #c04e4e;
 	--dark-hero: #660000;
 	--dark-pale: #881414;
 	--glow: #c10f1a;

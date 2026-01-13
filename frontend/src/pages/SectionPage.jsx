@@ -2,15 +2,15 @@ import { NavLink, useParams } from 'react-router-dom'
 import { departments, employees, sections } from '../data/data'
 import { motion } from 'framer-motion'
 
-const DepartmentPage = () => {
-	const { departmentid } = useParams()
+const SectionPage = () => {
+	const { sectionid } = useParams()
 
-	const department = departments.find(dep => dep.to === departmentid)
+	const section = sections.find(dep => dep.to === sectionid)
 
-	if (!department) {
+	if (!section) {
 		return (
 			<div className='text-4xl font-semibold text-[var(--text)]'>
-				Департамент не найден
+				Отдел не найден
 			</div>
 		)
 	}
@@ -18,7 +18,7 @@ const DepartmentPage = () => {
 	return (
 		<div>
 			<p className='text-4xl font-semibold text-[var(--text)]'>
-				{department.title}
+				{section.title}
 			</p>
 
 			<div className='grid grid-cols-3 gap-5'>
@@ -95,42 +95,10 @@ const DepartmentPage = () => {
 							Нет Информации
 						</p>
 					</motion.div>
-					<motion.div
-						initial={{ opacity: 0, x: -8 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: -8 }}
-						transition={{ duration: 0.2, delay: 0.3 }}
-						className='rounded-md border border-[var(--border)] h-125 overflow-hidden '
-					>
-						<p className='text-sm font-semibold text-[var(--black)] border-b border-[var(--border)] w-full px-4 py-1'>
-							Отделы <span className='font-thin'>12</span>
-						</p>
-						<div className='h-full overflow-scroll'>
-							{sections.map((item, idx) => (
-								<NavLink
-									to={`/department/${departmentid}/section/${item.to}`}
-									className='block'
-								>
-									<motion.div
-										key={idx}
-										initial={{ opacity: 0, x: -8 }}
-										animate={{ opacity: 1, x: 0 }}
-										exit={{ opacity: 0, x: -8 }}
-										transition={{ duration: 0.2, delay: idx * 0.04 }}
-										className={`px-3 py-2 text-[var(--text)] text-sm hover:bg-[var(--hero)] hover:text-white transition-colors cursor-pointer ${
-											idx % 2 === 0 ? 'bg-[var(--bg-second)]' : 'bg-[var(--bg)]'
-										}`}
-									>
-										{item.title}
-									</motion.div>
-								</NavLink>
-							))}
-						</div>
-					</motion.div>
 				</div>
 			</div>
 		</div>
 	)
 }
 
-export default DepartmentPage
+export default SectionPage

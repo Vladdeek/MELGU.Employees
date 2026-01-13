@@ -8,12 +8,12 @@ export default function DashboardLayout() {
 		<div className='flex'>
 			<SideBar />
 			<div
-				className={`flex min-h-screen flex-col w-full`}
+				className={`flex min-h-screen  flex-col w-full`}
 				style={{ marginLeft: SideBarWidth }}
 			>
 				<Header />
 				<main className={`p-4`}>
-					<NavTrail />
+					{/* <NavTrail /> */}
 					<Outlet />
 				</main>
 			</div>
