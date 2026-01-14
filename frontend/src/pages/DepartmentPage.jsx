@@ -22,10 +22,10 @@ const DepartmentPage = () => {
 			</p>
 
 			<div className='grid grid-cols-3 gap-5'>
-				<div className='col-span-2 rounded-md border border-[var(--border)] h-full overflow-hidden'>
-					<p className='text-md px-4 py-1 font-semibold text-[var(--black)]'>
+				<div className='col-span-2 rounded-md border border-[var(--border)] shadow-[var(--shadow)] h-full overflow-hidden'>
+					<p className='text-md px-4 py-1 font-semibold text-[var(--text)]'>
 						Сотрудники{' '}
-						<span className='text-md font-thin text-[var(--black)]'>
+						<span className='text-md font-thin text-[var(--subtext)]'>
 							{employees.length}
 						</span>
 					</p>
@@ -58,9 +58,9 @@ const DepartmentPage = () => {
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: -8 }}
 						transition={{ duration: 0.2, delay: 0.15 }}
-						className='rounded-md border border-[var(--border)] h-fit overflow-hidden '
+						className='rounded-md border border-[var(--border)] shadow-[var(--shadow)] h-fit overflow-hidden '
 					>
-						<p className='text-sm font-semibold text-[var(--black)] border-b border-[var(--border)] w-full px-4 py-1'>
+						<p className='text-sm font-semibold text-[var(--text)]  border-b border-[var(--border)] w-full px-4 py-1'>
 							Исполняющий обязанности
 						</p>
 						<p className='text-sm text-[var(--subtext)] px-4 py-1'>
@@ -72,23 +72,9 @@ const DepartmentPage = () => {
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: -8 }}
 						transition={{ duration: 0.2, delay: 0.2 }}
-						className='rounded-md border border-[var(--border)] h-fit overflow-hidden '
+						className='rounded-md border border-[var(--border)] shadow-[var(--shadow)] h-fit overflow-hidden '
 					>
-						<p className='text-sm font-semibold text-[var(--black)] border-b border-[var(--border)] w-full px-4 py-1'>
-							Исполняющий обязанности
-						</p>
-						<p className='text-sm text-[var(--subtext)] px-4 py-1'>
-							Нет Информации
-						</p>
-					</motion.div>
-					<motion.div
-						initial={{ opacity: 0, x: -8 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: -8 }}
-						transition={{ duration: 0.2, delay: 0.25 }}
-						className='rounded-md border border-[var(--border)] h-fit overflow-hidden '
-					>
-						<p className='text-sm font-semibold text-[var(--black)] border-b border-[var(--border)] w-full px-4 py-1'>
+						<p className='text-sm font-semibold text-[var(--text)] border-b border-[var(--border)] w-full px-4 py-1'>
 							Руководитель
 						</p>
 						<p className='text-sm text-[var(--subtext)] px-4 py-1'>
@@ -99,11 +85,25 @@ const DepartmentPage = () => {
 						initial={{ opacity: 0, x: -8 }}
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: -8 }}
-						transition={{ duration: 0.2, delay: 0.3 }}
-						className='rounded-md border border-[var(--border)] h-125 overflow-hidden '
+						transition={{ duration: 0.2, delay: 0.25 }}
+						className='rounded-md border border-[var(--border)] shadow-[var(--shadow)] h-fit overflow-hidden '
 					>
-						<p className='text-sm font-semibold text-[var(--black)] border-b border-[var(--border)] w-full px-4 py-1'>
-							Отделы <span className='font-thin'>12</span>
+						<p className='text-sm font-semibold text-[var(--text)] border-b border-[var(--border)] w-full px-4 py-1'>
+							Дополнительные контакты
+						</p>
+						<p className='text-sm text-[var(--subtext)] px-4 py-1'>
+							Нет Информации
+						</p>
+					</motion.div>
+					<motion.div
+						initial={{ opacity: 0, x: -8 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: -8 }}
+						transition={{ duration: 0.2, delay: 0.3 }}
+						className='rounded-md border border-[var(--border)] shadow-[var(--shadow)] h-125 overflow-hidden '
+					>
+						<p className='text-sm font-semibold text-[var(--text)] border-b border-[var(--border)] w-full px-4 py-1'>
+							Отделы <span className='font-thin text-[var(--subtext)]'>12</span>
 						</p>
 						<div className='h-full overflow-scroll'>
 							{sections.map((item, idx) => (
@@ -117,7 +117,7 @@ const DepartmentPage = () => {
 										animate={{ opacity: 1, x: 0 }}
 										exit={{ opacity: 0, x: -8 }}
 										transition={{ duration: 0.2, delay: idx * 0.04 }}
-										className={`px-3 py-2 text-[var(--text)] text-sm hover:bg-[var(--hero)] hover:text-white transition-colors cursor-pointer ${
+										className={`px-3 py-3 text-[var(--text)] text-sm hover:bg-[var(--hero)] hover:text-white transition-colors cursor-pointer ${
 											idx % 2 === 0 ? 'bg-[var(--bg-second)]' : 'bg-[var(--bg)]'
 										}`}
 									>

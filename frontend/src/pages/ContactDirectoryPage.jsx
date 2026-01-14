@@ -25,12 +25,18 @@ const ContactDirectoryPage = () => {
 							onClick={() => setActive(item.id)}
 							className={`group relative text-center flex flex-col items-center ${
 								active === item.id
-									? 'text-white'
+									? 'text-white w-full'
 									: 'text-[var(--subtext)] hover:text-[var(--hero)] cursor-pointer w-fit'
-							}  text-sm py-2 px-3 rounded-md overflow-hidden font-normal transition-all delay-25 duration-200`}
+							}  text-sm py-2 rounded-md overflow-hidden font-normal transition-all delay-25 duration-200`}
 						>
 							{item.title}
-							<div className='h-[1px] w-0 bg-[var(--hero)] group-hover:w-full transition-all'></div>
+							<div
+								className={`h-[1px] w-0 ${
+									active === item.id
+										? 'w-0 bg-transparent'
+										: 'group-hover:w-full bg-[var(--hero)]'
+								} transition-all`}
+							></div>
 							<div
 								className={`${
 									active === item.id
@@ -85,8 +91,8 @@ const ContactDirectoryPage = () => {
 
 const ContactList = ({ title, contacts }) => {
 	return (
-		<div className='flex flex-col overflow-hidden rounded-md bg-[var(--bg)] border border-[var(--border)]'>
-			<p className='px-4 py-2 text-lg border-b-2 border-[var(--hero)] '>
+		<div className='flex flex-col overflow-hidden rounded-md bg-[var(--bg)] border border-[var(--border)] shadow-[var(--shadow)]'>
+			<p className='px-4 py-2 text-lg border-b-2 border-[var(--hero)] shadow-[var(--shadow)] text-[var(--text)]'>
 				{title}
 			</p>
 			<div className={`${contacts.length === 0 && 'p-2'} flex flex-col gap-2`}>
@@ -131,8 +137,8 @@ const ContactList = ({ title, contacts }) => {
 
 const SubordinateUnits = ({ title, departments }) => {
 	return (
-		<div className='flex flex-col overflow-hidden  rounded-md bg-[var(--bg)] border border-[var(--border)]'>
-			<p className='px-4 py-2 text-lg border-b-2 border-[var(--hero)] '>
+		<div className='flex flex-col overflow-hidden  rounded-md bg-[var(--bg)] border border-[var(--border)] shadow-[var(--shadow)]'>
+			<p className='px-4 py-2 text-lg border-b-2 border-[var(--hero)] shadow-[var(--shadow)] text-[var(--text)]'>
 				{title}
 			</p>
 			<div

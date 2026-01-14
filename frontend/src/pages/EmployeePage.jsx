@@ -13,8 +13,8 @@ import {
 
 export const EmployeeSection = () => {
 	return (
-		<div className='col-span-3 bg-white rounded-md border border-[var(--border)] border-t-3 border-t-[var(--hero)] h-fit'>
-			<p className='text-sm px-5 py-3 font-normal text-[var(--hero)]'>
+		<div className='col-span-3 bg-[var(--bg)] rounded-md border border-[var(--border)] border-t-3 border-t-[var(--hero)] h-fit'>
+			<p className='text-sm px-5 py-3 font-normal text-[var(--hero)] shadow-[var(--shadow)]'>
 				Нет данных
 			</p>
 		</div>
@@ -120,7 +120,7 @@ const EmployeePage = () => {
 				) : (
 					<>
 						<div className='col-span-1 order-1'>
-							<div className='bg-white rounded-md overflow-hidden border border-[var(--border)] w-full'>
+							<div className='bg-[var(--bg)] rounded-md shadow-[var(--shadow)] overflow-hidden border border-[var(--border)] w-full'>
 								<img
 									src='https://i.pinimg.com/736x/32/6c/24/326c2412c4b465cf6194490ee880cebf.jpg'
 									alt=''
@@ -143,8 +143,8 @@ const EmployeePage = () => {
 						</div>
 
 						<div className=' min-md:col-span-2 flex flex-col gap-5 max-[1335px]:order-3 order-2'>
-							<div className='bg-white rounded-md border border-[var(--border)]'>
-								<p className='text-sm px-4 py-1 font-semibold text-[var(--black)]'>
+							<div className='bg-[var(--bg)] rounded-md border border-[var(--border)] shadow-[var(--shadow)]'>
+								<p className='text-sm px-4 py-1 font-semibold text-[var(--text)]'>
 									О сотруднике
 								</p>
 								{infoBlocks1.map(item => {
@@ -152,7 +152,7 @@ const EmployeePage = () => {
 									return (
 										<div
 											key={item.label}
-											className='flex gap-3 items-center px-3 py-3 border-t border-[var(--border)]'
+											className='flex gap-3 items-center px-3 py-3 border-t border-[var(--border)]  '
 										>
 											<Icon className='text-[var(--gray)]' />
 											<p className='flex flex-col gap-1'>
@@ -161,12 +161,17 @@ const EmployeePage = () => {
 												</span>
 												{item.isList ? (
 													item.value.map((val, i) => (
-														<span key={i} className='text-sm'>
+														<span
+															key={i}
+															className='text-sm text-[var(--text)]'
+														>
 															{val}
 														</span>
 													))
 												) : (
-													<span className='text-sm'>{item.value}</span>
+													<span className='text-sm text-[var(--text)]'>
+														{item.value}
+													</span>
 												)}
 											</p>
 										</div>
@@ -174,8 +179,8 @@ const EmployeePage = () => {
 								})}
 							</div>
 
-							<div className='bg-white rounded-md border border-[var(--border)]'>
-								<p className='text-sm px-4 py-1 font-semibold text-[var(--black)]'>
+							<div className='bg-[var(--bg)] rounded-md border border-[var(--border)] shadow-[var(--shadow)]'>
+								<p className='text-sm px-4 py-1 font-semibold text-[var(--text)]'>
 									Начальник управления
 								</p>
 								{infoBlocks2.map(item => (
@@ -188,7 +193,9 @@ const EmployeePage = () => {
 											<span className='text-[var(--subtext)] text-sm font-light'>
 												{item.label}
 											</span>
-											<span className='text-sm'>{item.value}</span>
+											<span className='text-sm text-[var(--text)]'>
+												{item.value}
+											</span>
 										</p>
 									</div>
 								))}

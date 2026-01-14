@@ -7,7 +7,7 @@ const Accordion = ({ title, option }) => {
 	const [dropdown, setDropdown] = useState(true)
 	const { employeeid } = useParams()
 	return (
-		<div className='rounded-md overflow-hidden border border-[var(--border)] select-none'>
+		<div className='rounded-md overflow-hidden border border-[var(--border)] shadow-[var(--shadow)] select-none'>
 			<div className='flex justify-between px-3 py-1 bg-[var(--hero)] text-white items-center'>
 				<p>{title}</p>
 				<ChevronDown

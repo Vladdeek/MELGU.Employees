@@ -20,6 +20,7 @@ import DepartmentPage from './pages/DepartmentPage'
 import SectionPage from './pages/SectionPage'
 import EmployeePage, { EmployeeSection } from './pages/EmployeePage'
 import ContactDirectoryPage from './pages/ContactDirectoryPage'
+import EmployeesPage from './pages/Employees'
 
 function MainApp() {
 	const [role, setRole] = useState()
@@ -35,6 +36,7 @@ function MainApp() {
 			<Routes>
 				<Route path='/' element={<DashboardLayout />}>
 					<Route path='departments/list' element={<Departments />} />
+					<Route path='employees/list' element={<EmployeesPage />} />
 
 					<Route path='department/:departmentid' element={<DepartmentPage />} />
 					<Route
@@ -55,7 +57,7 @@ createRoot(document.getElementById('root')).render(
 	<Router>
 		<Toaster position='top-right' />
 		<div className='relative'>
-			{/* <Snowfall
+			<Snowfall
 				style={{
 					position: 'fixed',
 					width: '100vw',
@@ -63,7 +65,7 @@ createRoot(document.getElementById('root')).render(
 					zIndex: 9999,
 					pointerEvents: 'none',
 				}}
-			/> */}
+			/>
 			<MainApp />
 		</div>
 	</Router>

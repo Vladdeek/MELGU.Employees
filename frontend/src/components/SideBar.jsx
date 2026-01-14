@@ -11,7 +11,7 @@ import {
 import { HeaderHeight } from './Header'
 import { use, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export const SideBarWidth = '240px'
 
@@ -61,16 +61,17 @@ const SideBar = () => {
 	]
 	return (
 		<aside
-			className={`fixed left-0 top-0 h-screen bg-[var(--bg)]`}
+			className={`fixed left-0 top-0 h-screen bg-[var(--bg)] z-10 shadow-[var(--shadow)]`}
 			style={{ width: SideBarWidth }}
 		>
-			<div
-				className='flex items-center justify-center gap-1 shadow-lg font-semibold text-white bg-[var(--dark-hero)]'
+			<NavLink
+				to={'/employees/list'}
+				className='flex items-center cursor-pointer justify-center gap-1 shadow-lg font-semibold text-white bg-[var(--dark-hero)]'
 				style={{ height: HeaderHeight }}
 			>
 				<img src='/MelGUwl.svg' className='h-full' />
 				<p>МелГУ.Сотрудники</p>
-			</div>
+			</NavLink>
 			<div className='border-r border-[var(--border)] flex flex-col justify-between h-full px-2 py-6'>
 				<div className='flex flex-col h-fit'>
 					<p className='uppercase font-semibold text-[13px] text-[var(--gray)] ml-2'>
@@ -115,7 +116,7 @@ const SideBar = () => {
 						to={'https://science.melgu.ru'}
 					/>
 					<div className='flex gap-1'>
-						<p>© 2026.</p>
+						<p className='text-[var(--text)]'>© 2026.</p>
 						<a
 							href='/d'
 							target='_blank'
