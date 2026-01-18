@@ -1,5 +1,6 @@
-import { MenuIcon, Moon, SearchIcon, Sun } from 'lucide-react'
+import { MenuIcon, Moon, SearchIcon, Sidebar, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { SideBarWidth } from './SideBar'
 
 export const HeaderHeight = '56px'
 
@@ -30,14 +31,25 @@ export const SearchMobile = ({}) => {
 					searchIsActive ? 'w-full' : 'hidden'
 				} outline-none placeholder:text-[#ffffff75] focus:text-[var(--text)] focus:placeholder:text-[var(--subtext)] bg-transparent text-white transition-all`}
 			/>
-			<SearchIcon
-				onClick={() => setSearchIsActive(prev => !prev)}
-				className={`${
-					searchIsActive
-						? 'text-[#ffffff75] group-focus:text-[var(--text)] border-l border-[#ffffff45] hover:bg-[#ffffff45] active:bg-[#ffffff75] active:text-white'
-						: 'text-white hover:bg-[var(--dark-hero)]'
-				}  flex items-center justify-center h-full aspect-square w-10 p-2.5  transition-all cursor-pointer`}
-			/>
+			{!searchIsActive ? (
+				<SearchIcon
+					onClick={() => setSearchIsActive(prev => !prev)}
+					className={`${
+						searchIsActive
+							? 'text-[#ffffff75] group-focus:text-[var(--text)] border-l border-[#ffffff45] hover:bg-[#ffffff45] active:bg-[#ffffff75] active:text-white'
+							: 'text-white hover:bg-[var(--dark-hero)]'
+					}  flex items-center justify-center h-full aspect-square w-10 p-2.5  transition-all cursor-pointer`}
+				/>
+			) : (
+				<X
+					onClick={() => setSearchIsActive(prev => !prev)}
+					className={`${
+						searchIsActive
+							? 'text-[#ffffff75] group-focus:text-[var(--text)] border-l border-[#ffffff45] hover:bg-[#ffffff45] active:bg-[#ffffff75] active:text-white'
+							: 'text-white hover:bg-[var(--dark-hero)]'
+					}  flex items-center justify-center h-full aspect-square w-10 p-1  transition-all cursor-pointer`}
+				/>
+			)}
 		</div>
 	)
 }
@@ -80,13 +92,34 @@ const Header = ({ onChange, isMobile }) => {
 
 	return (
 		<header
-			className={`sticky w-full items-center max-md:justify-between flex gap-3 top-0 bg-[var(--hero)] py-[10px] px-[34px] shadow-[var(--shadow)] z-10`}
+			className={`sticky w-full items-center max-md:justify-between flex gap-3 top-0 bg-[var(--hero)] py-[10px] px-[34px] shadow-[var(--shadow)] ${
+				isMobile ? 'z-5' : 'z-10'
+			} `}
 			style={{ height: HeaderHeight }}
 		>
-			<MenuIcon
+			<div
 				onClick={() => setShowSideBar(prev => !prev)}
-				className='text-white md:hidden h-full w-auto aspect-square rounded-md hover:bg-[var(--dark-hero)] cursor-pointer transition-all p-1'
-			/>
+				className={`relative h-9 w-9 p-1 flex flex-col justify-center items-center 
+			`}
+				style={{ marginLeft: showSideBar ? SideBarWidth : '0px' }}
+			>
+				<div
+					className={`h-[3px] rounded-full w-[27px] bg-white absolute transition-all ${
+						showSideBar ? 'rotate-45' : 'top-2'
+					}`}
+				></div>
+				<div
+					className={`h-[3px] rounded-full  bg-white absolute transition-all ${
+						showSideBar ? 'w-0' : 'items-center w-[27px]'
+					}`}
+				></div>
+				<div
+					className={`h-[3px] rounded-full w-[27px] bg-white absolute transition-all ${
+						showSideBar ? '-rotate-45' : 'bottom-2'
+					}`}
+				></div>
+			</div>
+
 			{isMobile ? (
 				<div className='flex gap-3 items-center w-full justify-end'>
 					<SearchMobile />
