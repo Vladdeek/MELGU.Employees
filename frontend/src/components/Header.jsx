@@ -1,4 +1,12 @@
-import { MenuIcon, Moon, SearchIcon, Sidebar, Sun, X } from 'lucide-react'
+import {
+	ArrowLeftFromLine,
+	MenuIcon,
+	Moon,
+	SearchIcon,
+	Sidebar,
+	Sun,
+	X,
+} from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { SideBarWidth } from './SideBar'
 
@@ -92,11 +100,12 @@ const Header = ({ onChange, isMobile }) => {
 
 	return (
 		<header
-			className={`sticky w-full items-center max-md:justify-between flex gap-3 top-0 bg-[var(--hero)] py-[10px] px-[34px] shadow-[var(--shadow)] ${
-				isMobile ? 'z-5' : 'z-10'
+			className={`sticky w-full items-center max-md:justify-between flex gap-3 top-0 bg-[var(--hero)] px-[34px] shadow-[var(--shadow)] ${
+				isMobile ? 'z-5 pl-[5px]' : 'z-10 py-[10px]'
 			} `}
 			style={{ height: HeaderHeight }}
 		>
+			{/* 			
 			<div
 				onClick={() => setShowSideBar(prev => !prev)}
 				className={`relative h-9 w-9 p-1 flex flex-col justify-center items-center 
@@ -118,6 +127,16 @@ const Header = ({ onChange, isMobile }) => {
 						showSideBar ? '-rotate-45' : 'bottom-2'
 					}`}
 				></div>
+			</div> */}
+
+			<div
+				onClick={() => setShowSideBar(prev => !prev)}
+				className={`${
+					!showSideBar && 'rotate-y-180'
+				} text-white md:hidden my-[17px] h-10 w-10 flex items-center justify-center aspect-square rounded-md hover:bg-[var(--dark-hero)] cursor-pointer transition-all p-2`}
+				style={{ marginLeft: showSideBar ? SideBarWidth : '0px' }}
+			>
+				<ArrowLeftFromLine />
 			</div>
 
 			{isMobile ? (
