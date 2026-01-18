@@ -9,13 +9,13 @@ import {
 	Phone,
 } from 'lucide-react'
 import { HeaderHeight } from './Header'
-import { use, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 export const SideBarWidth = '240px'
 
-const SideBar = () => {
+const SideBar = ({ showSideBar, isMobile }) => {
 	const sidebarItems = [
 		{
 			label: 'Другие сайты МелГУ',
@@ -29,9 +29,9 @@ const SideBar = () => {
 			),
 			option: [
 				{ title: 'МелГУ.Абитуриент', href: 'https://abiturient.mgu-mlt.ru' },
-				{ title: 'Главный сайт', href: 'https://melsu.ru' },
-				{ title: 'МелГУ.СУО', href: 'https://lms.melsu.ru' },
-				{ title: 'MyMelSU', href: 'https://my.melsu.ru' },
+				{ title: 'МелГУ.Главный сайт', href: 'https://melsu.ru' },
+				{ title: 'МелГУ.СДО', href: 'https://lms.melsu.ru' },
+				{ title: 'МелГУ.Кабинеты', href: 'https://my.melsu.ru' },
 			],
 		},
 		{
@@ -59,10 +59,14 @@ const SideBar = () => {
 			to: '/contacts',
 		},
 	]
+
 	return (
 		<aside
-			className={`fixed left-0 top-0 h-screen bg-[var(--bg)] z-10 shadow-[var(--shadow)]`}
-			style={{ width: SideBarWidth }}
+			className={` fixed top-0 h-screen bg-[var(--bg)] z-10 shadow-[var(--shadow)] transition-all`}
+			style={{
+				width: SideBarWidth,
+				left: isMobile ? (showSideBar ? '0px' : `-${SideBarWidth}`) : '0px',
+			}}
 		>
 			<NavLink
 				to={'/employees/list'}
