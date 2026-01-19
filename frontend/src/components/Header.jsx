@@ -101,35 +101,36 @@ const Header = ({ onChange, isMobile }) => {
 	return (
 		<header
 			className={`sticky w-full items-center max-md:justify-between flex gap-3 top-0 bg-[var(--hero)] px-[34px] shadow-[var(--shadow)] ${
-				isMobile ? 'z-5 pl-[5px]' : 'z-10 py-[10px]'
+				isMobile ? 'z-5 pl-[5px] duration-500' : 'z-10 py-[10px]'
 			} `}
 			style={{ height: HeaderHeight }}
 		>
-			{/* 			
 			<div
 				onClick={() => setShowSideBar(prev => !prev)}
-				className={`relative h-9 w-9 p-1 flex flex-col justify-center items-center 
+				className={`group relative h-9 w-9 p-1 flex flex-col justify-center items-start cursor-pointer 
 			`}
 				style={{ marginLeft: showSideBar ? SideBarWidth : '0px' }}
 			>
 				<div
-					className={`h-[3px] rounded-full w-[27px] bg-white absolute transition-all ${
-						showSideBar ? 'rotate-45' : 'top-2'
+					className={`h-[3px] rounded-full  bg-white absolute transition-all  ${
+						showSideBar ? 'rotate-45 w-[27px]' : 'top-2 w-[27px]'
 					}`}
 				></div>
 				<div
-					className={`h-[3px] rounded-full  bg-white absolute transition-all ${
-						showSideBar ? 'w-0' : 'items-center w-[27px]'
+					className={`h-[3px]  rounded-full   bg-white absolute transition-all  ${
+						showSideBar ? 'w-0' : 'items-center w-[18px] group-hover:w-[27px]'
 					}`}
 				></div>
 				<div
-					className={`h-[3px] rounded-full w-[27px] bg-white absolute transition-all ${
-						showSideBar ? '-rotate-45' : 'bottom-2'
+					className={`h-[3px] rounded-full   bg-white absolute transition-all  ${
+						showSideBar
+							? '-rotate-45 w-[27px]'
+							: 'bottom-2 w-[9px] group-hover:w-[27px]'
 					}`}
 				></div>
-			</div> */}
+			</div>
 
-			<div
+			{/* <div
 				onClick={() => setShowSideBar(prev => !prev)}
 				className={`${
 					!showSideBar && 'rotate-y-180'
@@ -137,7 +138,7 @@ const Header = ({ onChange, isMobile }) => {
 				style={{ marginLeft: showSideBar ? SideBarWidth : '0px' }}
 			>
 				<ArrowLeftFromLine />
-			</div>
+			</div> */}
 
 			{isMobile ? (
 				<div className='flex gap-3 items-center w-full justify-end'>
