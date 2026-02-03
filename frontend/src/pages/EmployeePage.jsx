@@ -117,8 +117,8 @@ const EmployeePage = () => {
 					<>
 						<div className='col-span-1 order-1'>
 							<div className='bg-[var(--bg)] rounded-md shadow-[var(--shadow)] overflow-hidden border border-[var(--border)] w-full'>
-								{employeeInfo?.img ? (
-									<img src={employeeInfo?.img} alt='' />
+								{employeeInfo?.avatar_url ? (
+									<img src={employeeInfo?.avatar_url} alt='' />
 								) : (
 									<User2 className='w-full h-full p-10 bg-[var(--border)] text-[var(--gray)]' />
 								)}
