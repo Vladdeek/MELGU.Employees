@@ -74,7 +74,7 @@ const EmployeePage = () => {
 		{
 			icon: User,
 			label: 'Должность',
-			value: employeeInfo?.position || 'Неизвестно',
+			value: employeeInfo?.employee_position?.title || 'Неизвестно',
 		},
 		{
 			icon: BriefcaseBusiness,
@@ -87,16 +87,7 @@ const EmployeePage = () => {
 			value: employeeInfo?.academic_degree || 'Неизвестно',
 		},
 	]
-	const infoBlocks2 = [
-		{
-			label: 'Отдел',
-			value: 'управление социальной и молодежной политики',
-		},
-		{
-			label: 'Подразделение',
-			value: 'Административная часть',
-		},
-	]
+	const infoBlocks2 = []
 
 	if (loading) return <Loading className={'text-[var(--gray)]'} />
 
@@ -186,7 +177,9 @@ const EmployeePage = () => {
 								})}
 							</div>
 
-							<div className='bg-[var(--bg)] rounded-md border border-[var(--border)] shadow-[var(--shadow)]'>
+							<div
+								className={`${infoBlocks2?.length === 0 && 'hidden'} bg-[var(--bg)] rounded-md border border-[var(--border)] shadow-[var(--shadow)]`}
+							>
 								<p className='text-sm px-4 py-1 font-semibold text-[var(--text)]'>
 									Начальник управления
 								</p>
