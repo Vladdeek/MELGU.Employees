@@ -18,9 +18,10 @@ import DashboardLayout from './pages/layout/DashboardLayout'
 import Departments from './pages/Departments'
 import DepartmentPage from './pages/DepartmentPage'
 import SectionPage from './pages/SectionPage'
-import EmployeePage, { EmployeeSection } from './pages/EmployeePage'
+import EmployeePage from './pages/EmployeePage'
 import ContactDirectoryPage from './pages/ContactDirectoryPage'
 import EmployeesPage from './pages/Employees'
+import AchievmentsSection, { AchievmentInfo } from './pages/Achievments'
 
 function MainApp() {
 	const [role, setRole] = useState()
@@ -39,12 +40,10 @@ function MainApp() {
 					<Route path='employees/list' element={<EmployeesPage />} />
 
 					<Route path='department/:departmentid' element={<DepartmentPage />} />
-					<Route
-						path='department/:departmentid/section/:sectionid'
-						element={<SectionPage />}
-					/>
 					<Route path='employee/:employeeid' element={<EmployeePage />}>
-						<Route path=':achievements' element={<EmployeeSection />} />
+						<Route path=':achievements' element={<AchievmentsSection />}>
+							<Route path=':achievementid' element={<AchievmentInfo />} />
+						</Route>
 					</Route>
 					<Route path='contacts' element={<ContactDirectoryPage />} />
 				</Route>
@@ -57,7 +56,7 @@ createRoot(document.getElementById('root')).render(
 	<Router>
 		<Toaster position='top-right' />
 		<div className='relative'>
-			<Snowfall
+			{/* <Snowfall
 				style={{
 					position: 'fixed',
 					width: '100vw',
@@ -65,8 +64,8 @@ createRoot(document.getElementById('root')).render(
 					zIndex: 9999,
 					pointerEvents: 'none',
 				}}
-			/>
+			/> */}
 			<MainApp />
 		</div>
-	</Router>
+	</Router>,
 )

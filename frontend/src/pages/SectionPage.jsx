@@ -1,13 +1,55 @@
 import { NavLink, useParams } from 'react-router-dom'
-import { departments, employees, sections } from '../data/data'
+
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import {
+	GetStructuralUnitsByID,
+	GetStructuralUnitsEmployees,
+	GetSubStructuralUnitsByID,
+} from '../api/StructuralUnits'
 
 const SectionPage = () => {
 	const { sectionid } = useParams()
 
-	const section = sections.find(dep => dep.to === sectionid)
+	const [loading, setLoading] = useState(true)
+	const [depInfo, setDepInfo] = useState([])
+	const [depEmpl, setDepEmpl] = useState([])
+	const [depSubs, setDepSubs] = useState([])
 
-	if (!section) {
+	useEffect(() => {
+		const info = async () => {
+			try {
+				const data = await GetStructuralUnitsByID(sectionid)
+				setDepInfo(data)
+			} finally {
+				setLoading(false)
+			}
+		}
+		const employees = async () => {
+			try {
+				const data = await GetStructuralUnitsEmployees(sectionid)
+				setDepEmpl(data)
+			} finally {
+				setLoading(false)
+			}
+		}
+		const subs = async () => {
+			try {
+				const data = await GetSubStructuralUnitsByID(sectionid)
+				setDepSubs(data)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		info()
+		employees()
+		subs()
+	}, [])
+
+	if (loading) return <div>Загрузка...</div>
+
+	if (!depInfo) {
 		return (
 			<div className='text-4xl font-semibold text-[var(--text)]'>
 				Отдел не найден
@@ -18,7 +60,7 @@ const SectionPage = () => {
 	return (
 		<div>
 			<p className='text-4xl font-semibold text-[var(--text)]'>
-				{section.title}
+				{depInfo?.name}
 			</p>
 
 			<div className='grid grid-cols-3 gap-5'>
@@ -26,11 +68,11 @@ const SectionPage = () => {
 					<p className='text-md px-4 py-1 font-semibold text-[var(--text)]'>
 						Сотрудники{' '}
 						<span className='text-md font-thin text-[var(--subtext)]'>
-							{employees.length}
+							{depEmpl?.length}
 						</span>
 					</p>
 
-					{employees.map((item, idx) => (
+					{depEmpl?.map((item, idx) => (
 						<NavLink to={`/employee/${item.id}`} className='block'>
 							<motion.div
 								key={idx}
@@ -43,7 +85,7 @@ const SectionPage = () => {
 								}`}
 							>
 								<p className='text-[var(--text)] group group-hover:text-white font-medium'>
-									{item.fullName}
+									{item.first_name} {item.last_name} {item.middle_name}
 								</p>
 								<p className='text-sm font-normal group group-hover:text-red-100 text-[var(--gray)]'>
 									{item.position}

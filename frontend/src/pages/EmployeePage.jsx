@@ -1,5 +1,4 @@
 import { NavLink, Outlet, useParams } from 'react-router-dom'
-import { departments, employees, sections } from '../data/data'
 import { motion } from 'framer-motion'
 import Accordion from '../components/Accordion'
 import {
@@ -9,22 +8,30 @@ import {
 	Landmark,
 	Mail,
 	User,
+	User2,
 } from 'lucide-react'
-
-export const EmployeeSection = () => {
-	return (
-		<div className='col-span-3 bg-[var(--bg)] rounded-md border border-[var(--border)] border-t-3 border-t-[var(--hero)] h-fit'>
-			<p className='text-sm px-5 py-3 font-normal text-[var(--hero)] shadow-[var(--shadow)]'>
-				Нет данных
-			</p>
-		</div>
-	)
-}
+import { GetEmployeeProfileByID } from '../api/EmployeeProfiles'
+import { useEffect, useState } from 'react'
+import { Loading } from '../components/Breadcrumbs'
 
 const EmployeePage = () => {
 	const { employeeid, achievements } = useParams()
+	const [employeeInfo, setEmployeeInfo] = useState()
+	const [loading, setLoading] = useState(true)
 
-	const user = employees.find(emp => emp.id === Number(employeeid))
+	useEffect(() => {
+		const load = async () => {
+			try {
+				const data = await GetEmployeeProfileByID(employeeid)
+				console.log(data)
+				setEmployeeInfo(data)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		load()
+	}, [])
 
 	const accordionData = [
 		{
@@ -67,22 +74,17 @@ const EmployeePage = () => {
 		{
 			icon: User,
 			label: 'Должность',
-			value: user.position,
+			value: employeeInfo?.position || 'Неизвестно',
 		},
 		{
 			icon: BriefcaseBusiness,
 			label: 'Общий стаж',
-			value: '2 года',
+			value: employeeInfo?.total_experience_years || 'Неизвестно',
 		},
 		{
 			icon: GraduationCap,
 			label: 'Образование',
-			value: [
-				'Техническое обслуживание, ремонт и эксплуатация автомобильного транспорта',
-				'Среднее профессиональное образование, Техник-механик Гидрометеорология',
-				'(1.05.03.04)Высшее образование, Бакалавр',
-			],
-			isList: true,
+			value: employeeInfo?.academic_degree || 'Неизвестно',
 		},
 	]
 	const infoBlocks2 = [
@@ -96,7 +98,9 @@ const EmployeePage = () => {
 		},
 	]
 
-	if (!user) {
+	if (loading) return <Loading className={'text-[var(--gray)]'} />
+
+	if (!employeeInfo) {
 		return (
 			<div className='text-4xl font-semibold text-[var(--text)]'>
 				Сотрудник не найден
@@ -107,7 +111,8 @@ const EmployeePage = () => {
 	return (
 		<div>
 			<p className='text-4xl font-semibold text-[var(--text)] mb-1'>
-				{user.fullName}
+				{employeeInfo?.first_name} {employeeInfo?.last_name}
+				{employeeInfo?.middle_name}
 			</p>
 
 			<p className='text-[26px] font-thin text-[var(--subtext)]'>
@@ -121,10 +126,12 @@ const EmployeePage = () => {
 					<>
 						<div className='col-span-1 order-1'>
 							<div className='bg-[var(--bg)] rounded-md shadow-[var(--shadow)] overflow-hidden border border-[var(--border)] w-full'>
-								<img
-									src='https://i.pinimg.com/736x/32/6c/24/326c2412c4b465cf6194490ee880cebf.jpg'
-									alt=''
-								/>
+								{employeeInfo?.img ? (
+									<img src={employeeInfo?.img} alt='' />
+								) : (
+									<User2 className='w-full h-full p-10 bg-[var(--border)] text-[var(--gray)]' />
+								)}
+
 								<div className='flex justify-between items-center'>
 									<div className='flex w-full justify-center py-2 border-r border-[var(--border)] hover:bg-[var(--bg-second)] cursor-pointer'>
 										<Mail className='text-[var(--gray)] h-4' />

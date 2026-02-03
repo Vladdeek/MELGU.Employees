@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { employees } from '../data/data'
+
 import { motion } from 'framer-motion'
 import { SearchIcon } from 'lucide-react'
+import { Loading } from '../components/Breadcrumbs'
+import { useEffect, useState } from 'react'
+import { GetAllUsers } from '../api/Users'
 
 export const Search = () => {
 	return (
@@ -17,6 +20,24 @@ export const Search = () => {
 }
 
 const EmployeesPage = () => {
+	const [loading, setLoading] = useState(true)
+	const [employees, setEmployees] = useState([])
+
+	useEffect(() => {
+		const load = async () => {
+			try {
+				const data = await GetAllUsers()
+				setEmployees(data)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		load()
+	}, [])
+
+	if (loading) return <Loading className={'text-[var(--gray)]'} />
+
 	return (
 		<div className='w-full'>
 			<div className='flex justify-between'>
@@ -32,11 +53,11 @@ const EmployeesPage = () => {
 			</div>
 
 			<p className='text-3xl font-thin text-[var(--gray)]'>
-				{employees.length}
+				{employees?.length}
 			</p>
 			<Search />
 			<div className='rounded-md border border-[var(--border)] h-full mt-4 overflow-hidden'>
-				{employees.map((item, idx) => (
+				{employees?.map((item, idx) => (
 					<NavLink to={`/employee/${item.id}`} className='block'>
 						<motion.div
 							key={idx}
@@ -48,7 +69,7 @@ const EmployeesPage = () => {
 								idx % 2 === 0 ? 'bg-[var(--bg-second)]' : 'bg-[var(--bg)]'
 							}`}
 						>
-							{item.fullName}
+							{item.username}
 						</motion.div>
 					</NavLink>
 				))}

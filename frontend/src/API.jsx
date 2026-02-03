@@ -20,9 +20,7 @@ export const { API, FILE_API } = config[env]
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const api = axios.create({
-	withCredentials: true,
-})
+const api = axios.create()
 
 const showError = status => {
 	const messages = {
@@ -51,7 +49,7 @@ api.interceptors.response.use(
 		showError(status)
 
 		return Promise.reject(error)
-	}
+	},
 )
 
 export default api

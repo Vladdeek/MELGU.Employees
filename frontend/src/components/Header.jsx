@@ -107,7 +107,7 @@ const Header = ({ onChange, isMobile }) => {
 		>
 			<div
 				onClick={() => setShowSideBar(prev => !prev)}
-				className={`group relative h-9 w-9 p-1 flex flex-col justify-center items-start cursor-pointer 
+				className={`group md:hidden relative h-9 w-9 p-1 flex flex-col justify-center items-start cursor-pointer 
 			`}
 				style={{ marginLeft: showSideBar ? SideBarWidth : '0px' }}
 			>

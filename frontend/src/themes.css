@@ -10,6 +10,7 @@
 	--invert-text: #ffffff;
 	--subtext: #555555;
 	--border: #e0e0e0;
+	--light-gray: #efefef;
 	--gray: #a19c9c;
 	--shadow: 1px 2px 4px rgba(52, 52, 62, 0.125);
 }
@@ -26,6 +27,7 @@
 	--invert-text: #121212;
 	--subtext: #808080;
 	--border: #282828;
+	--light-gray: #2a2a2a;
 	--gray: #6d6767;
 	--shadow: 1px 2px 4px rgba(0, 0, 0, 0.125);
 }
