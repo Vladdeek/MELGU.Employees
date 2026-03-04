@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { GetAllDepartment } from '../api/Departments'
@@ -10,7 +10,8 @@ const SearchResult = () => {
 	const [searchResult, setSearchResult] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	const { term } = useParams()
+	const [searchParams] = useSearchParams()
+	const term = searchParams.get('term')
 
 	useEffect(() => {
 		const load = async () => {

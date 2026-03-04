@@ -19,7 +19,7 @@ export const Search = () => {
 	const navigate = useNavigate()
 
 	const handleSearch = async () => {
-		navigate(`search/${search}`)
+		navigate(`/search?term=${search}`)
 	}
 
 	return (

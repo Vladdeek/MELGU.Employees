@@ -38,7 +38,7 @@ function MainApp() {
 			<Routes>
 				<Route path='/' element={<DashboardLayout />}>
 					<Route path='departments/list' element={<Departments />} />
-					<Route path='search/:term' element={<SearchResult />} />
+					<Route path='search' element={<SearchResult />} />
 					<Route path='employees/list' element={<EmployeesPage />} />
 
 					<Route path='department/:departmentid' element={<DepartmentPage />} />
