@@ -9,18 +9,32 @@ import {
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { SideBarWidth } from './SideBar'
+import { TextSearch } from '../api/ComplexTextSearch'
+import { useNavigate } from 'react-router-dom'
 
 export const HeaderHeight = '56px'
 
 export const Search = () => {
+	const [search, setSearch] = useState('')
+	const navigate = useNavigate()
+
+	const handleSearch = async () => {
+		navigate(`search/${search}`)
+	}
+
 	return (
-		<div className='w-full bg-[#ffffff40] h-10 focus-within:bg-[var(--bg)] focus-within:ring-3 ring-[var(--glow)] rounded-sm pl-3 flex items-center transition-all overflow-hidden'>
+		<div className='group w-full bg-[#ffffff40] h-10 focus-within:bg-[var(--bg)] focus-within:ring-3 ring-[var(--glow)] rounded-sm pl-3 flex items-center transition-all overflow-hidden'>
 			<input
 				type='text'
+				onChange={e => setSearch(e.target.value)}
+				value={search}
 				placeholder='Поиск...'
 				className='w-full outline-none placeholder:text-[#ffffff75] focus:text-[var(--text)] focus:placeholder:text-[var(--subtext)] bg-transparent text-white '
 			/>
-			<SearchIcon className='text-[#ffffff75] group-focus:text-[var(--text)] border-l border-[#ffffff45] flex items-center justify-center h-full aspect-square w-10 p-2.5 hover:bg-[#ffffff45] active:bg-[#ffffff75]active:text-white transition-all cursor-pointer' />
+			<SearchIcon
+				onClick={handleSearch}
+				className='text-[#ffffff75] group-focus-within:text-[var(--text)] border-l border-[#ffffff45] flex items-center justify-center h-full aspect-square w-10 p-2.5 hover:bg-[#ffffff45] active:bg-[#ffffff75] active:text-white transition-all cursor-pointer'
+			/>
 		</div>
 	)
 }

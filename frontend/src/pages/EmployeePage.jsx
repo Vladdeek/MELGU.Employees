@@ -84,7 +84,7 @@ const EmployeePage = () => {
 		{
 			icon: GraduationCap,
 			label: 'Образование',
-			value: employeeInfo?.academic_degree || 'Неизвестно',
+			value: employeeInfo?.education_1c || 'Неизвестно',
 		},
 	]
 	const infoBlocks2 = []
@@ -102,7 +102,7 @@ const EmployeePage = () => {
 	return (
 		<div>
 			<p className='text-4xl font-semibold text-[var(--text)] mb-1'>
-				{employeeInfo?.first_name} {employeeInfo?.last_name}
+				{employeeInfo?.first_name} {employeeInfo?.last_name}{' '}
 				{employeeInfo?.middle_name}
 			</p>
 

@@ -20,8 +20,9 @@ import DepartmentPage from './pages/DepartmentPage'
 import SectionPage from './pages/SectionPage'
 import EmployeePage from './pages/EmployeePage'
 import ContactDirectoryPage from './pages/ContactDirectoryPage'
-import EmployeesPage from './pages/Employees'
+import EmployeesPage, { Search } from './pages/Employees'
 import AchievmentsSection, { AchievmentInfo } from './pages/Achievments'
+import SearchResult from './pages/SearchResult'
 
 function MainApp() {
 	const [role, setRole] = useState()
@@ -37,6 +38,7 @@ function MainApp() {
 			<Routes>
 				<Route path='/' element={<DashboardLayout />}>
 					<Route path='departments/list' element={<Departments />} />
+					<Route path='search/:term' element={<SearchResult />} />
 					<Route path='employees/list' element={<EmployeesPage />} />
 
 					<Route path='department/:departmentid' element={<DepartmentPage />} />
