@@ -69,7 +69,7 @@ const SideBar = ({ showSideBar, isMobile }) => {
 			}}
 		>
 			<NavLink
-				to={'/employees/list'}
+				to={'/employees/list?offset=1'}
 				className='flex items-center cursor-pointer justify-center gap-1 shadow-lg font-semibold text-white bg-[var(--dark-hero)]'
 				style={{ height: HeaderHeight }}
 			>

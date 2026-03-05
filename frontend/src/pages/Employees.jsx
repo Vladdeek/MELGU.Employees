@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { motion } from 'framer-motion'
 import { SearchIcon } from 'lucide-react'
 import { Loading } from '../components/Breadcrumbs'
 import { useEffect, useState } from 'react'
 import { GetAllUsers } from '../api/Users'
+import BasicPagination from '../components/BasicPagination'
 
 export const Search = () => {
 	return (
@@ -23,10 +24,15 @@ const EmployeesPage = () => {
 	const [loading, setLoading] = useState(true)
 	const [employees, setEmployees] = useState([])
 
+	const navigate = useNavigate()
+
+	const [searchParams] = useSearchParams()
+	const offset = Number(searchParams.get('offset')) || 1
+
 	useEffect(() => {
 		const load = async () => {
 			try {
-				const data = await GetAllUsers()
+				const data = await GetAllUsers(25, offset)
 				setEmployees(data)
 			} finally {
 				setLoading(false)
@@ -34,7 +40,7 @@ const EmployeesPage = () => {
 		}
 
 		load()
-	}, [])
+	}, [offset])
 
 	if (loading) return <Loading className={'text-[var(--gray)]'} />
 
@@ -53,11 +59,11 @@ const EmployeesPage = () => {
 			</div>
 
 			<p className='text-3xl font-thin text-[var(--gray)]'>
-				{employees?.length}
+				{employees?.total_items}
 			</p>
-			<Search />
-			<div className='rounded-md border border-[var(--border)] h-full mt-4 overflow-hidden'>
-				{employees?.map((item, idx) => (
+			{/* <Search /> */}
+			<div className='rounded-md border border-[var(--border)] h-full my-2 overflow-hidden'>
+				{employees?.items?.map((item, idx) => (
 					<NavLink to={`/employee/${item.id}`} className='block'>
 						<motion.div
 							key={idx}
@@ -74,6 +80,11 @@ const EmployeesPage = () => {
 					</NavLink>
 				))}
 			</div>
+			<BasicPagination
+				count={employees?.total_pages}
+				page={offset}
+				onPageChange={page => navigate(`/employees/list?offset=${page}`)}
+			/>
 		</div>
 	)
 }
