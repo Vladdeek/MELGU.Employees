@@ -5,6 +5,7 @@ import { GetAllDepartment } from '../api/Departments'
 import { GetAllStructuralUnits } from '../api/StructuralUnits'
 import { Loading } from '../components/Breadcrumbs'
 import { TextSearch } from '../api/ComplexTextSearch'
+import { API, FILE_API } from '../API'
 
 const SearchResult = () => {
 	const [searchResult, setSearchResult] = useState([])
@@ -49,10 +50,12 @@ const SearchResult = () => {
 
 						<div className='rounded-md border border-[var(--border)] h-full overflow-hidden shadow-[var(--shadow)]'>
 							{value.map((item, idx) => {
-								const id = item.redirect_url.split('/').pop()
-
 								return (
-									<NavLink key={id} to={`/department/${id}`} className='block'>
+									<NavLink
+										key={idx}
+										to={`../${key === 'Сотрудник' ? 'employee' : 'departments'}/${item.entity_id}`}
+										className='block'
+									>
 										<motion.div
 											initial={{ opacity: 0, x: -8 }}
 											animate={{ opacity: 1, x: 0 }}
